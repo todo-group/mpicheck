@@ -1,8 +1,7 @@
-cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-project(mpicheck NONE)
-
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/config)
-include(core)
+cmake_minimum_required(VERSION 3.14)
+include(cmake/prefix.cmake)
+project(mpicheck CXX)
+include(cmake/postfix.cmake)
 
 find_package(MPI REQUIRED)
 include_directories(${MPI_CXX_INCLUDE_PATH})
