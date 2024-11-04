@@ -1,17 +1,10 @@
 # mpicheck
 
-## mpicheck
+## How to run
 
 ```bash
 $ cmake -B build .
 $ cmake --build build
 $ ./build/mpicheck
-```
-
-## gpucheck
-
-```bash
-$ ./venv .venv
-$ source .venv/bin/activate
-$ python3 gpucheck.py
+$ ./build/venv/bin/python3 gpucheck.py
 ```
