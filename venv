@@ -1,0 +1,27 @@
+#!/bin/sh
+
+NAME=${1:-$(basename $(pwd))}
+DIR=${2:-${HOME}/venv/${NAME}}
+
+if [ -d ${DIR} ]; then :; else
+  echo "Executing: python3 -m venv ${DIR}"
+  python3 -m venv ${DIR}
+fi
+
+if [ -f ${DIR}/bin/python3 ]; then :; else
+  echo "Error: directory exists, but not venv directory"
+  exit 127
+fi
+
+echo "Executing: ${DIR}/bin/python3 -m pip install --upgrade pip"
+${DIR}/bin/python3 -m pip install --upgrade pip
+
+if [ -f requirements.txt ]; then
+  echo "Executing: ${DIR}/bin/python3 -m pip install -r requirements.txt"
+  ${DIR}/bin/python3 -m pip install -r requirements.txt
+fi
+
+/bin/echo "Next step: source ${DIR}/bin/activate"
+if [ -e /usr/bin/pbcopy ]; then
+  /bin/echo -n "source ${DIR}/bin/activate" | pbcopy
+fi
